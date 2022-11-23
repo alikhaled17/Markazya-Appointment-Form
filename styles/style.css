@@ -1,5 +1,5 @@
 * {
-  font-family: "Toyota Display Bold";
+  font-family: "arial";
   margin: 0;
   padding: 0;
   list-style: none;
@@ -24,7 +24,7 @@ html {
 }
 
 body {
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 .form {
@@ -37,11 +37,21 @@ body {
   padding: 70px 60px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .form-controll {
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+:root .input,
+:root .input-lg {
+  /* font-size: 12px !important; */
+  font-weight: normal !important;
+}
+
+:root .form-control,
+:root input.form-control {
+  font-weight: normal !important;
 }
 
 input[type="date"]::-webkit-inner-spin-button,
@@ -81,6 +91,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-size: 11px;
   flex-grow: 1;
   text-align: center;
+  cursor: pointer;
+}
+
+.slots > div:hover {
+  background-color: #49484864;
 }
 
 @media only screen and (max-width: 768px) {
