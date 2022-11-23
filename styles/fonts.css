@@ -1,0 +1,14 @@
+
+@font-face {
+  font-family: "AvenirLTStd";
+  src: url("./../assets/fonts/AvenirLTStd-Black.otf");
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Swissra-bold";
+  src: url("./../assets/fonts/Swissra/Swissra-bold.otf");
+  font-weight: 900;
+  font-display: swap;
+}

@@ -1,0 +1,91 @@
+* {
+  font-family: "Toyota Display Bold";
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:root .input-group-text {
+  height: 100%;
+  border-radius: 6px 0 0 6px;
+}
+
+:root .iti.iti--allow-dropdown {
+  width: 100%;
+  /* margin-top: 10px; */
+}
+
+.input-group-prepend {
+  min-width: 40px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+.form {
+  color: #494848;
+  /* width: 40vw; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 30px auto;
+  padding: 70px 60px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.form-controll {
+  margin-top: 10px;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  /* display: none; */
+  opacity: 0;
+  flex-grow: 1;
+  -webkit-appearance: none;
+}
+
+.form-title {
+  color: #0d6efd;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.form-title::after {
+  content: "";
+  display: block;
+  width: 20%;
+  margin: 10px 0;
+  height: 1px;
+  border: 1px solid #0d6efd;
+}
+
+.slots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #494848;
+  padding: 0;
+}
+
+.slots > div {
+  padding: 10px;
+  border: 0.5px solid #4948485d;
+  font-size: 11px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .slots > div {
+    font-size: 8px;
+  }
+}

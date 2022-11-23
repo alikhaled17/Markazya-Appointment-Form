@@ -1,0 +1,687 @@
+@media only screen and (max-width: 600px) {
+    
+    
+  .container {
+      width: 94%;
+      margin: 3% auto;
+    }
+    
+    .navbar {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .navbar img {
+      width: 30%;
+    }
+    
+    
+    .block-1 {
+      min-height: 100vh;
+    }
+
+    .block-1 .main-block {
+      border-radius: 25px; 
+      background-repeat: no-repeat;
+      background-size: 140% 110%;
+      background-position: center;
+      padding: 10% 6%;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: rgb(0 30 37 / 9%) 0px 2px 4px 0px, rgb(0 30 37 / 32%) -20px 2px 16px 0px;
+    }
+    
+    .block-1 .block-content {
+      color: #fff;
+    }
+    
+    .block-1 .block-content h1 {
+      font-size: 25px; 
+      margin: 10px 0 !important;
+    }
+    
+    .block-1 .block-content p {
+      font-size: 14px;
+      font-weight: normal;
+      width: 80%;
+    }
+    
+    .block-1 .block-action {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    
+    .block-1 .block-action a {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+    }
+  
+    .block-1 .block-action img {
+      width: 30%;
+      opacity: .8;
+      transition: all .5s ease-in-out;
+      cursor: pointer;
+      margin-right: 10%;
+    } 
+    
+    .block-1 .block-action img:hover {
+      opacity: 1;
+    }
+    
+    
+    
+    .block-2 .main-block {
+      margin: 40px 0 30px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 50px;
+  
+      width: 100%;
+      background-color: #B71D34;
+      overflow: hidden;
+      color: #fff;
+      box-shadow: rgb(0 30 37 / 9%) 0px 2px 4px 0px, rgb(0 30 37 / 32%) -20px 2px 16px 0px;
+    }
+    
+    
+    .block-2 .main-block .custom-btn {
+      width: 50%;
+      padding: 4% 2% ;
+      font-size: 13px;
+      text-align: center;
+      line-height: 100%;
+      cursor: pointer;
+    }
+    
+    .block-2 .main-block .custom-btn.active {
+      background-color: #fff;
+      color: #B71D34;
+      border-radius: 50px;
+    }
+    
+    
+    
+    
+    
+    /* BLOCK 3 */
+    /* BLOCK 3 */
+    /* BLOCK 3 */
+    /* BLOCK 3 */
+    /* BLOCK 3 */
+    
+    .block-3 {
+      min-height: 90vh;
+    }
+
+    .block-3 .main-block  {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+          border-radius: 25px; 
+        box-shadow: rgb(0 30 37 / 9%) 0px 2px 4px 0px, rgb(0 30 37 / 32%) -20px 2px 16px 0px;
+      }
+      
+     
+  .block-3 .gear-note {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 40%;
+  
+  }
+  
+  .block-3 .gear-note img {
+    width: 100%;
+  } 
+  
+  .block-3 .gear-note .note {
+    background-color: #B71D34;
+    color: #fff;
+    padding: 3px 6px;
+    font-size: 9px ;
+    border-radius: 20px;
+    margin-right: 37%;
+    margin-top: 20px;
+  }
+  
+  
+  .block-3 .block-content {
+    background-image: url("../assets/images/02.png");
+    background-size: 110%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 60%;
+  }
+      
+      .block-3 .info-list-item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 4px 0;
+        height: fit-content;
+      }
+      
+      .block-3 .info-list-item .icon {
+        margin-right: 20px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 8%;
+      }
+      
+      .block-3 .info-list-item .icon img {
+        height: 50%;
+      }
+      
+      .block-3 .info-list-item span {
+        width: 80%;
+        font-size: 12px;
+      }
+      
+      .block-3 .info-list-item .dot {
+        background-color: #000;
+        border-radius: 50%;
+        width: 14px;
+        height: 10px;
+        margin-left: 20%;
+      }
+      
+      
+      .block-3 .info-list-item .dot.green {
+        background-color: green;
+      }
+      .block-3 .info-list-item .dot.red {
+        background-color: #B71D34;
+      }
+      
+      .block-3 .result {
+        color: #303C59;
+      }
+  
+  
+      
+  
+          
+  .block-3 .block-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3%
+    }
+    
+    .block-3 .block-footer p {
+      width: 80%;
+      font-size: 12px;
+      padding: 5px;
+    }
+    
+    .block-3 .block-footer a {
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+     
+    .block-3 .block-footer img {
+      width: 60%;
+      filter: rgb(0 30 37 / 9%) 0px 2px 4px 0px, rgb(0 30 37 / 32%) -20px 2px 16px 0px;
+    }
+    
+    
+    .block-4 {
+      min-height: 100vh;
+    }
+
+    .block-4 .scroll-to-top img {
+      width: 50%;
+
+    }
+    
+    .block-4 .main-block{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15%;
+      width: 100%;
+    }
+    
+    .block-4 .custom-btn {
+      width: 42%;
+      padding: 10% 3% ;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #242323;
+      border-radius: 20px;
+    }
+    
+    .block-4 .custom-btn.active {
+      background-color: #B71D34;
+    }
+    
+    .block-4 .custom-btn img {
+      width: 40%;
+    }
+    
+    .block-4 .custom-btn span {
+      font-size: 2.2vh;
+      margin-left: 2%;
+    }
+  
+    
+    /* BLOCK 5 */
+    /* BLOCK 5 */
+    /* BLOCK 5 */
+    /* BLOCK 5 */
+    /* BLOCK 5 */
+  
+    .display-icons-info .list-arrow {
+      height: 13px !important;
+    }
+    .display-icons-info .list-arrow img {
+      height: 10px !important;
+    }
+    
+    .block-5 .information-icons {
+      display: none;
+      position: relative;
+      justify-content: flex-end;
+    }
+
+
+
+    .block-5 .information-icons img {
+      width: 200px;
+      position: relative;
+      right: 5%;
+    }
+
+    .block-5 .information-icons.active {
+      display: flex;
+    }
+
+    .block-5 .main-block {
+      margin: 40px 0 30px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 50px;
+      align-items: center;
+      width: 100%;
+      background-color: #B71D34;
+      overflow: hidden;
+      color: #fff;
+      box-shadow: rgb(0 30 37 / 9%) 0px 2px 4px 0px, rgb(0 30 37 / 32%) -20px 2px 16px 0px;
+    }
+    
+    
+    .block-5 .main-block .custom-btn {
+      width: 50%;
+      padding: 4% 2% ;
+      font-size: 13px;
+      text-align: center;
+      line-height: 100%;
+      cursor: pointer;
+    }
+    
+    .block-5 .main-block .custom-btn.active {
+      background-color: #fff;
+      color: #B71D34;
+      border-radius: 50px;
+    }
+    
+    
+    .block-5 .main-block img {
+      height: 18px;
+      margin-right: 5px;
+    }
+  
+  
+    /* centerelize */
+      
+    #customer-details {
+      min-height: 100vh;
+    }
+
+  .customer-details .scroll-to-top {
+    margin-top: 0;
+  }
+
+    .customer-details .main-block {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  
+    .customer-details .user-profile {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  
+    .customer-details .user-profile .profile-pic{
+      width: 110px;
+      height: 110px;
+      overflow: hidden;
+      border-radius: 50%;
+      margin-bottom: 5%;
+    }
+  
+    .customer-details .user-profile .profile-pic img {
+      width: 100%;
+    }
+  
+    .customer-details .user-profile p {
+      width: 100%;
+      font-size: 12px;
+      text-align: center;
+      margin-bottom: 4%;
+    }
+  
+    .customer-details .welcome-msg {
+      color: #B71D34;
+      font-size: 20px;
+      text-align: center;
+    } 
+    .customer-details .details {
+      width: 100%;
+    }
+  
+    .customer-details .details ul {
+      margin-top: 15px;
+    }
+  
+    .customer-details .details li {
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 15px;
+      width: 92%;
+      border-radius: 55px;
+      margin-bottom: 2.5%;
+    }
+  
+    .customer-details .details .item-left,
+    .customer-details .details .item-right {
+      display: flex;
+      flex-direction: column;
+      padding: 3px 4px;
+      width: 50%;
+    }
+  
+    .customer-details .details li label {
+      font-size: 13px;
+    }
+  
+    .customer-details .details li span {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      font-family: "Toyota Display Regular";
+    }
+    /* centerlize */
+  
+  /* 
+    .customer-details .main-block {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  
+    .customer-details .user-profile {
+      width: 42%;
+    }
+  
+    .customer-details .user-profile .profile-pic{
+      width: 110px;
+      height: 110px;
+      overflow: hidden;
+      border-radius: 50%;
+      margin-bottom: 5%;
+    }
+  
+    .customer-details .user-profile .profile-pic img {
+      width: 100%;
+    }
+  
+    .customer-details .user-profile p {
+      width: 100%;
+      margin-left: -1%;
+      font-size: 11px;
+    }
+  
+    .customer-details .welcome-msg {
+      color: #B71D34;
+      font-size: 20px;
+    } 
+    .customer-details .details {
+      width: 58%;
+    }
+  
+    .customer-details .details ul {
+      margin-top: 15px;
+    }
+  
+    .customer-details .details li {
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2px 4px;
+      width: 100%;
+      border-radius: 55px;
+      margin-bottom: 3%;
+    }
+  
+    .customer-details .details .item-left,
+    .customer-details .details .item-right {
+      display: flex;
+      flex-direction: column;
+      padding: 2px 2px;
+      width: 50%;
+    }
+  
+    .customer-details .details li label {
+      font-size: 11px;
+    }
+  
+    .customer-details .details li span {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      font-family: "Toyota Display Regular";
+    } */
+  
+  
+    
+  .vehicle-status p {
+    width: 100%;
+    font-size: 12px;
+  }
+
+
+  .vehicle-status .scroll-to-top {
+    right: 5%;
+    bottom: 5%;
+  }
+
+  .vehicle-status .scroll-to-top img {
+    width: 60%;
+  }
+  
+  .vehicle-status-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+  }
+  
+  .vehicle-status-list a {
+    width: 42%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 6px;
+    background-color: #242323;
+    height: 80px;
+    margin: 5px 2%;
+    border-radius: 10px;
+    color: #fff;
+  }
+  
+  .vehicle-status-list a:nth-child(1) { background-color: #B5B5B5; }
+  .vehicle-status-list a:nth-child(2) { background-color: #171717; }
+  .vehicle-status-list a:nth-child(3) { background-color: #808080; }
+  .vehicle-status-list a:nth-child(4) { background-color: #000; }
+  .vehicle-status-list a:nth-child(5) { background-color: #3B3B3B; }
+  
+  .vehicle-status-list a img {
+    width: 25%;
+    margin-right: 4%;
+    margin-left: 4%;
+  }
+  
+  .vehicle-status-list a span {
+    font-size: 16px;
+  }
+
+  .vehicle-single-details {
+    margin-top: 0px;
+    min-height: 100vh;
+  }
+  
+  .vehicle-single-details .information-icons {
+    display: flex ;
+    justify-content: flex-start;
+  }
+  
+  .vehicle-single-details .information-icons img {
+    width: 180px;
+    margin-top: -30px;
+  }
+
+  
+  .vehicle-single-details .big-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  
+  .vehicle-single-details .big-label .label {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #B5B5B5;
+    height: 80px;
+    margin: 10px .5%;
+    border-radius: 15px;
+    color: #fff;
+  }
+    
+  .vehicle-single-details .big-label .label img {
+    width: 40%;
+    margin-right: 4%;
+    margin-left: 4%;
+  }
+  
+  
+  .vehicle-single-details .big-label p {
+    width: 47%;
+    font-size: 12px;
+  }
+  
+  .vehicle-single-details .big-label .label span {
+    font-size: 14px;
+  }
+  
+  .vehicle-single-details  tr {
+    font-size: 12px;
+  }
+  
+  
+  .vehicle-single-details tr th:nth-child(1) {
+    border-radius: 50px 0 0 50px;
+  }
+  
+  .vehicle-single-details  tr {
+    border-radius: 50px;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .vehicle-single-details .table-tr-title {
+    position: absolute;
+    top: 0;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    width: 100%;
+    left: 0;
+    color: #605e5e;
+    border-bottom: .5px dotted rgba(0, 0, 0, 0.2);
+    /* background-color: #e0dede; */
+  }
+  .vehicle-single-details .table-tr-title span {
+    margin-left: 8%;
+  }
+  
+
+  .customer-details .scroll-to-top {
+    position: relative;
+    margin-left: 80%;
+  }
+  
+  .customer-details .scroll-to-top img {
+    width: 60%;
+  }
+
+
+  .vehicle-single-details .scroll-to-top {
+    position: relative;
+    margin-left: 80%;
+  }
+  
+  .vehicle-single-details .scroll-to-top img {
+    width: 70%;
+  }
+
+  #vehicle-status {
+    min-height: 100vh;
+  }
+
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
