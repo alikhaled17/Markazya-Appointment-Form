@@ -130,6 +130,12 @@ getElById("submit").addEventListener("click", (e) => {
   let ServiceID = +getElemnt("serviceType").value;
   let ModelID = +getElemnt("model").value;
   let Comments = getElemnt("description").value;
+
+  if (!getElById("verify").classList.contains("verfied")) {
+    getElById("phone_feadback").innerHTML = "Please verify your phone number!";
+    return false;
+  }
+
   let data = {
     CustomerName,
     CustomerMobile,
