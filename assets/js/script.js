@@ -98,6 +98,13 @@ function validation(name) {
         feadback.textContent = "Required!";
       }
       break;
+    case "phone":
+      if (value.length < 5) {
+        feadback.textContent = "Required!";
+      } else {
+        feadback.textContent = "";
+      }
+      break;
 
     default:
       break;

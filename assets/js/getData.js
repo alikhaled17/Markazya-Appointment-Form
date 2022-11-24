@@ -175,29 +175,47 @@ function getSlots() {
 }
 getElById("ctrl-slots").addEventListener("click", getSlots());
 
-getElById("verify").addEventListener("click", function checkVerify() {
+function checkVerify() {
   let verifyClasses = getElById("verify").classList;
-  if (verifyClasses.contains("isVerified")) {
-    return false;
+  const phoneInput = window.intlTelInput(phoneInputField, {
+    preferredCountries: ["jo", "co", "in", "de"],
+    utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  });
+  const isValidNumber = phoneInput.isValidNumber();
+  if (!isValidNumber) {
+    getElById("phone_feadback").innerHTML = "Phone number is not valid!";
+    getElById("submit").classList.add("btn-secondary");
+    getElById("submit").classList.remove("btn-primary");
   } else {
-    let phoneNumber = getElemnt("phone")
-      .value.replace("+", "")
-      .trim()
-      .replace(" ", "");
-    if (phoneNumber.length > 8) {
-      fetch(`${baseURL}SendOtp?MobileNumber=${phoneNumber}`, { method: "POST" })
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          getElById("modal").classList.add("active");
-          getElFeadback("phone").innerHTML = "";
-        });
+    getElById("submit").classList.remove("btn-secondary");
+    getElById("submit").classList.add("btn-primary");
+    getElById("phone_feadback").innerHTML = "";
+    if (verifyClasses.contains("isVerified")) {
+      return false;
     } else {
-      getElFeadback("phone").innerHTML = "phone number is required!";
+      let phoneNumber = getElemnt("phone")
+        .value.replace("+", "")
+        .trim()
+        .replace(" ", "");
+      if (phoneNumber.length > 8) {
+        fetch(`${baseURL}SendOtp?MobileNumber=${phoneNumber}`, {
+          method: "POST",
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            getElById("modal").classList.add("active");
+            getElFeadback("phone").innerHTML = "";
+          });
+      } else {
+        getElFeadback("phone").innerHTML = "phone number is required!";
+      }
     }
   }
-});
+}
+getElById("verify").addEventListener("click", checkVerify);
 
 getElById("modal").addEventListener("click", (e) => {
   if (e.target.classList.contains("modal")) {
@@ -227,11 +245,16 @@ getElById("submit-verify").addEventListener("click", function sendOTP() {
       return res.json();
     })
     .then((res) => {
-      res.Data.forEach((r) => {
-        let el = document.createElement("option");
-        el.value = r.ServiceId;
-        el.innerHTML = r.ServiceName;
-        getElemnt("serviceType").appendChild(el);
-      });
+      getElById("modal").classList.remove("active");
+      getElById("verify").innerHTML = "Verfied";
+      getElById("verify").setAttribute("class", "");
+      getElById("verify").classList.add("text-success");
+      getElById("verify").classList.add("verfied");
+    })
+    .catch((error) => {
+      getElById("verify").innerHTML = "not Verfied";
+      getElById("verify").setAttribute("class", "");
+      getElById("verify").classList.add("text-danger");
+      getElById("verify").classList.add("not-verified");
     });
 });

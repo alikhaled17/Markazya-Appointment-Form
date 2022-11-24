@@ -138,6 +138,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: green;
 }
 
+.verified,
+.not-verified {
+  pointer-events: none;
+}
+
 .modal {
   width: 100vw;
   height: 100vh;
