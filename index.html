@@ -96,11 +96,11 @@
               required
               type="text"
               class="form-control"
-              id="inlineFormInputGroup"
+              id="client-name"
               placeholder="Client Name *"
             />
           </div>
-          <!-- <small class="text-danger fw-500">Looks good!</small> -->
+          <small id="client-name_feadback" class="text-danger fw-500"></small>
         </div>
       </div>
 
@@ -120,7 +120,7 @@
               onchange="process(event)"
             />
           </div>
-          <!-- <small class="alert-info"></small> -->
+          <small id="phone_feadback" class="alert-info"></small>
         </div>
       </div>
 
@@ -140,12 +140,12 @@
             <input
               required
               type="text"
+              id="email"
               class="form-control"
-              id="inlineFormInputGroup"
               placeholder="Email Address"
             />
           </div>
-          <!-- <small class="text-danger fw-500">Looks good!</small> -->
+          <small id="email_feadback" class="text-danger fw-500"></small>
         </div>
       </div>
 
@@ -159,14 +159,18 @@
                 <i class="fa-solid fa-screwdriver-wrench"></i>
               </div>
             </div>
-            <select class="form-select" aria-label=" example">
-              <option selected>Service Center *</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <select
+              id="service-center"
+              class="form-select"
+              aria-label=" example"
+            >
+              <option selected value="">Service Center *</option>
             </select>
           </div>
-          <!-- <small class="text-danger fw-500">Looks good!</small> -->
+          <small
+            id="service-center_feadback"
+            class="text-danger fw-500"
+          ></small>
         </div>
       </div>
 
@@ -179,9 +183,16 @@
                 <i class="fa-solid fa-calendar-week"></i>
               </div>
             </div>
-            <input type="date" class="form-control date-input" id="date" />
+            <input
+              type="date"
+              class="form-control date-input"
+              id="appointment-date"
+            />
           </div>
-          <!-- <small class="text-danger fw-500">Looks good!</small> -->
+          <small
+            id="appointment-date_feadback"
+            class="text-danger fw-500"
+          ></small>
         </div>
       </div>
 
@@ -214,14 +225,11 @@
                 <i class="fa-solid fa-car-side"></i>
               </div>
             </div>
-            <select class="form-select" aria-label=" example">
+            <select id="model" class="form-select" aria-label=" example">
               <option selected>Model Name *</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
             </select>
           </div>
-          <!-- <small class="text-danger fw-500">Looks good!</small> -->
+          <small id="model_feadback" class="text-danger fw-500"></small>
         </div>
       </div>
 
@@ -235,14 +243,14 @@
                 <i class="fa-solid fa-screwdriver-wrench"></i>
               </div>
             </div>
-            <select class="form-select" aria-label=" example">
+            <select id="service-type" class="form-select" aria-label=" example">
               <option selected>Service Type *</option>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select>
           </div>
-          <!-- <small class="text-danger fw-500">Looks good!</small> -->
+          <small id="service-type_feadback" class="text-danger fw-500"></small>
         </div>
       </div>
 
@@ -260,22 +268,30 @@
               required
               type="text"
               class="form-control"
-              id="inlineFormInputGroup"
+              id="description"
               placeholder="Comments / Descreption"
             />
           </div>
-          <!-- <small class="text-danger fw-500">Looks good!</small> -->
+          <small id="description_feadback" class="text-danger fw-500"></small>
         </div>
       </div>
 
       <div class="col-12">
-        <button class="btn btn-primary w-100 mt-4" type="submit">
+        <button
+          disabled
+          id="submit"
+          class="btn btn-primary w-100 mt-4"
+          type="submit"
+        >
           Book Now
         </button>
       </div>
     </form>
   </body>
 
+  <script src="./assets/js/helpers.js"></script>
+  <script src="./assets/js/getData.js"></script>
+  <script src="./assets/js/script.js"></script>
   <script>
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = window.intlTelInput(phoneInputField, {
