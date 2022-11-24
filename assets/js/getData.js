@@ -235,7 +235,3 @@ getElById("submit-verify").addEventListener("click", function sendOTP() {
       });
     });
 });
-
-getElById("email").addEventListener("change", () => {
-  let isValid = ValidateEmail();
-});

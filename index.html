@@ -98,6 +98,7 @@
               class="form-control"
               id="client-name"
               placeholder="Client Name *"
+              onchange=" checkAndValide('client-name')"
             />
           </div>
           <small id="client-name_feadback" class="text-danger fw-500"></small>
@@ -144,6 +145,7 @@
               id="email"
               class="form-control"
               placeholder="Email Address"
+              onchange=" checkAndValide('email')"
             />
           </div>
           <small id="email_feadback" class="text-danger fw-500"></small>
@@ -164,6 +166,7 @@
               id="service-center"
               class="form-select"
               aria-label=" example"
+              onchange="checkAndValide('service-center')"
             >
               <option selected value="">Service Center *</option>
             </select>
@@ -188,6 +191,7 @@
               type="date"
               class="form-control date-input"
               id="appointment-date"
+              onchange="checkAndValide('appointment-date')"
             />
           </div>
           <small
@@ -217,7 +221,12 @@
                 <i class="fa-solid fa-car-side"></i>
               </div>
             </div>
-            <select id="model" class="form-select" aria-label=" example">
+            <select
+              id="model"
+              class="form-select"
+              aria-label=" example"
+              onchange="checkAndValide('model')"
+            >
               <option selected value="">Model Name *</option>
             </select>
           </div>
@@ -235,7 +244,12 @@
                 <i class="fa-solid fa-screwdriver-wrench"></i>
               </div>
             </div>
-            <select id="service-type" class="form-select" aria-label=" example">
+            <select
+              id="service-type"
+              class="form-select"
+              aria-label=" example"
+              onchange="checkAndValide('service-type')"
+            >
               <option selected value="">Service Type *</option>
             </select>
           </div>
@@ -310,17 +324,16 @@
       // document.querySelector("#phone").value = phoneNumber;
       console.log("phoneNumber", phoneNumber);
       console.log("isValidNumber", isValidNumber);
-      info.style.display = "";
-      info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+      if (!isValidNumber) {
+        document.querySelector("#phone_feadback").innerHTML =
+          "Phone number is not valid!";
+        document.getElementById("submit").classList.add("btn-secondary");
+        document.getElementById("submit").classList.remove("btn-primary");
+      } else {
+        document.getElementById("submit").classList.remove("btn-secondary");
+        document.getElementById("submit").classList.add("btn-primary");
+        document.querySelector("#phone_feadback").innerHTML = "";
+      }
     }
-
-    // function checkOnNumber(event) {
-    //   event.preventDefault();
-    //   console.log("phone:", event.target.value);
-    //   // document.querySelector("#phone").value = phoneNumber;
-    //   // console.log("phoneNumber", phoneNumber);
-    //   // info.style.display = "";
-    //   // info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
-    // }
   </script>
 </html>

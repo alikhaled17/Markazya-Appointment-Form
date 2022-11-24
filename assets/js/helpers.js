@@ -5,6 +5,8 @@ const Regex = {
   exceptArMaxTitle: /^[A-Za-z0-9.&!@#%=_*+-?^~/${}()|[\]\\ x{0,50}]+$/g,
   exceptEnMaxTitle: /^[\u0621-\u064A0-9.&!@#%=_*+-?^~/${}()|[\]\\ x{0,50}]+$/g,
   enCharWithNumbers: /^[A-Za-z0-9\s]+$/,
+  mail: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+  numbers: /^[0-9]*$/,
 };
 
 const getElById = (id) => document.getElementById(id); // return one element
@@ -26,13 +28,13 @@ function getElFeadback(elName) {
   return getElById(`${elName}_feadback`);
 }
 
-function ValidateEmail() {
-  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if (mailformat.test(getElById("email").value)) {
-    getElFeadback("email").innerHTML = "";
-    return true;
-  }
-  getElFeadback("email").innerHTML =
-    "You have entered an invalid email address!";
-  return false;
-}
+// function ValidateEmail() {
+//   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//   if (mailformat.test(getElById("email").value)) {
+//     getElFeadback("email").innerHTML = "";
+//     return true;
+//   }
+//   getElFeadback("email").innerHTML =
+//     "You have entered an invalid email address!";
+//   return false;
+// }
