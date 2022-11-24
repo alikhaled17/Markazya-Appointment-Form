@@ -173,7 +173,47 @@ function getSlots() {
       });
   }
 }
-getElById("ctrl-slots").addEventListener("click", getSlots());
+getElById("ctrl-slots").addEventListener("click", function s() {
+  if (getElemnt("serviceCenter").value) {
+    fetch(
+      `${baseURL}GetAvailableSlots?serviceCenterId=${
+        getElemnt("serviceCenter").value
+      }&date=${getElemnt("appointmentDate").value}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        getElById("slots").innerHTML = "Available Slots!";
+        let slots = handleDate(
+          res.Data.workingHours.StartingHour,
+          res.Data.workingHours.EndingHour
+        );
+
+        let timeSlots = res.Data.timeSlots.map(
+          (t) => `${t.StartTime} - ${t.EndTime}`
+        );
+        getElById("slots").innerHTML = "";
+        slots.forEach((r) => {
+          let el = document.createElement("div");
+
+          if (timeSlots.includes(r.replaceAll("\n", "").trim())) {
+            el.setAttribute("class", "col-3 disabled");
+          } else {
+            el.setAttribute("class", "col-3");
+          }
+          el.value = r;
+          el.innerHTML = r;
+          getElById("slots").appendChild(el);
+        });
+      })
+      .catch((error) => {
+        getElById("ctrl-slots").innerHTML = "";
+        getElById("slots").innerHTML =
+          '<small onclick="getSlots()" class="click">Try Again</small> ther is no available slots! ';
+      });
+  }
+});
 
 function checkVerify() {
   let verifyClasses = getElById("verify").classList;
