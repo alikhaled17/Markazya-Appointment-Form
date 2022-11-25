@@ -215,7 +215,7 @@ function setTimer(type = "start") {
       scnd -= 1;
       $("send-otp-again").innerHTML = `${scnd} second ..`;
       $("send-otp-again").classList.add("text-secondary");
-      if (scnd === 56) {
+      if (scnd === 0) {
         $("send-otp-again").innerHTML = "send again";
         $("send-otp-again").classList.remove("text-secondary");
         $("send-otp-again").classList.add("text-primary");
