@@ -26,13 +26,13 @@ function checkValidation() {
   for (let i = 0; i < Object.keys(data).length; i++) {
     const element = data[Object.keys(data)[i]];
     if (!element) {
-      getElById("submit").classList.remove("btn-primary");
-      getElById("submit").classList.add("btn-secondary");
+      $("submit").classList.remove("btn-primary");
+      $("submit").classList.add("btn-secondary");
       return false;
     }
   }
-  getElById("submit").classList.remove("btn-secondary");
-  getElById("submit").classList.add("btn-primary");
+  $("submit").classList.remove("btn-secondary");
+  $("submit").classList.add("btn-primary");
   return true;
 }
 
@@ -40,8 +40,7 @@ function checkAll() {
   let hasOneError = false;
   for (let i = 0; i < Object.keys(formElements).length; i++) {
     let key = Object.keys(formElements)[i];
-    const element = getElById(`${formElements[key].name}_feadback`);
-    element && console.log(i, element.innerHTML);
+    const element = $(`${formElements[key].name}_feadback`);
     if (!element.innerHTML) {
       validation(formElements[key].name);
       hasOneError = true;
@@ -52,11 +51,10 @@ function checkAll() {
 }
 
 function validation(name) {
-  let value = getElById(name).value;
-  let feadback = getElById(`${name}_feadback`);
+  let value = $(name).value;
+  let feadback = $(`${name}_feadback`);
   switch (name) {
     case "email":
-      console.log(Regex.mail.test(value));
       if (!Regex.mail.test(value)) {
         feadback.textContent = "Email is not valid";
       } else {
@@ -116,7 +114,7 @@ function checkAndValide(name) {
   checkValidation();
 }
 
-getElById("submit").addEventListener("click", (e) => {
+$("submit").addEventListener("click", (e) => {
   e.preventDefault();
   let CustomerName = getElemnt("cName").value;
   let CustomerMobile = getElemnt("phone")
@@ -131,8 +129,8 @@ getElById("submit").addEventListener("click", (e) => {
   let ModelID = +getElemnt("model").value;
   let Comments = getElemnt("description").value;
 
-  if (!getElById("verify").classList.contains("verfied")) {
-    getElById("phone_feadback").innerHTML = "Please verify your phone number!";
+  if (!$("verify").classList.contains("verfied")) {
+    $("phone_feadback").innerHTML = "Please verify your phone number!";
     return false;
   }
 

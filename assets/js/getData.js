@@ -1,5 +1,7 @@
 const baseURL = "http://167.86.97.165:86/api/v1/ServiceCenters/";
-
+const spinner = `<div class="spinner-border spinner-border-sm" role="status">
+<span class="sr-only">Loading...</span>
+</div>`;
 // get form elements
 let formElements = {
   cName: {
@@ -44,10 +46,24 @@ let formElements = {
   },
 };
 
-const submitForm = getElById("submit");
+function resetAvailableSlots() {
+  $("ctrl-slots").innerHTML = "Show available Slots";
+  $("ctrl-slots").setAttribute("class", "");
+  $("ctrl-slots").setAttribute("class", "ctrl-slots click");
+}
+
+function checkedSlot() {
+  if (this.classList.contains("active")) {
+    this.classList.remove("active");
+  } else {
+    this.classList.add("active");
+  }
+}
+
+const submitForm = $("submit");
 
 const getElemnt = (name) => {
-  return getElById(formElements[name].name);
+  return $(formElements[name].name);
 };
 // create service center list
 fetch(`${baseURL}GetServiceCenters?websiteName=Toyota`)
@@ -79,6 +95,8 @@ fetch(`${baseURL}GetBrandModels?brand=Toyota`)
 
 // create service type list
 getElemnt("serviceCenter").addEventListener("change", function () {
+  resetAvailableSlots();
+
   fetch(
     `${baseURL}GetServiceOfCenter?CenterId=${this.value}&WebsiteName=Toyota`
   )
@@ -96,6 +114,7 @@ getElemnt("serviceCenter").addEventListener("change", function () {
 });
 
 function handleDate(start, end) {
+  resetAvailableSlots();
   let startMS = new Date(`2022-11-24 ${start}`).getTime();
   let endMS = new Date(`2022-11-24 ${end}`).getTime();
 
@@ -132,8 +151,10 @@ function handleDate(start, end) {
 }
 
 // get slots
+
 function getSlots() {
-  if (getElemnt("serviceCenter").value) {
+  if (getElemnt("serviceCenter").value && getElemnt("appointmentDate").value) {
+    $("ctrl-slots").innerHTML = spinner;
     fetch(
       `${baseURL}GetAvailableSlots?serviceCenterId=${
         getElemnt("serviceCenter").value
@@ -143,7 +164,7 @@ function getSlots() {
         return res.json();
       })
       .then((res) => {
-        getElById("slots").innerHTML = "Available Slots!";
+        $("slots").innerHTML = "Available Slots!";
         let slots = handleDate(
           res.Data.workingHours.StartingHour,
           res.Data.workingHours.EndingHour
@@ -152,149 +173,180 @@ function getSlots() {
         let timeSlots = res.Data.timeSlots.map(
           (t) => `${t.StartTime} - ${t.EndTime}`
         );
-        getElById("slots").innerHTML = "";
+        $("slots").innerHTML = "";
         slots.forEach((r) => {
           let el = document.createElement("div");
 
           if (timeSlots.includes(r.replaceAll("\n", "").trim())) {
-            el.setAttribute("class", "col-3 disabled");
+            el.setAttribute("class", "single-slot col-3");
+            el.addEventListener("click", checkedSlot);
           } else {
-            el.setAttribute("class", "col-3");
+            el.setAttribute("class", "single-slot col-3 disabled");
           }
           el.value = r;
           el.innerHTML = r;
-          getElById("slots").appendChild(el);
+          $("slots").appendChild(el);
         });
+        $("ctrl-slots").innerHTML = "Show available Slots";
       })
       .catch((error) => {
-        getElById("ctrl-slots").innerHTML = "";
-        getElById("slots").innerHTML =
+        $("ctrl-slots").innerHTML = "";
+        $("slots").innerHTML =
           '<small onclick="getSlots()" class="click">Try Again</small> ther is no available slots! ';
       });
+  } else {
+    $("ctrl-slots").setAttribute("class", "ctrl-slots text-danger click");
+    $("ctrl-slots").innerHTML =
+      "Please make sure that you checked service center and Appointment Date";
   }
 }
-getElById("ctrl-slots").addEventListener("click", function s() {
-  if (getElemnt("serviceCenter").value) {
-    fetch(
-      `${baseURL}GetAvailableSlots?serviceCenterId=${
-        getElemnt("serviceCenter").value
-      }&date=${getElemnt("appointmentDate").value}`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        getElById("slots").innerHTML = "Available Slots!";
-        let slots = handleDate(
-          res.Data.workingHours.StartingHour,
-          res.Data.workingHours.EndingHour
-        );
 
-        let timeSlots = res.Data.timeSlots.map(
-          (t) => `${t.StartTime} - ${t.EndTime}`
-        );
-        getElById("slots").innerHTML = "";
-        slots.forEach((r) => {
-          let el = document.createElement("div");
-
-          if (timeSlots.includes(r.replaceAll("\n", "").trim())) {
-            el.setAttribute("class", "col-3 disabled");
-          } else {
-            el.setAttribute("class", "col-3");
-          }
-          el.value = r;
-          el.innerHTML = r;
-          getElById("slots").appendChild(el);
-        });
-      })
-      .catch((error) => {
-        getElById("ctrl-slots").innerHTML = "";
-        getElById("slots").innerHTML =
-          '<small onclick="getSlots()" class="click">Try Again</small> ther is no available slots! ';
-      });
+// phone number handling
+let interval;
+let scnd = 60;
+function setTimer(type = "start") {
+  if (type === "end") {
+    scnd = 60;
+    $("send-otp-again").classList.remove("text-secondary");
+    $("send-otp-again").classList.add("text-primary");
+    clearInterval(interval);
+  } else {
+    interval = setInterval(() => {
+      scnd -= 1;
+      $("send-otp-again").innerHTML = `${scnd} second ..`;
+      $("send-otp-again").classList.add("text-secondary");
+      if (scnd === 56) {
+        $("send-otp-again").innerHTML = "send again";
+        $("send-otp-again").classList.remove("text-secondary");
+        $("send-otp-again").classList.add("text-primary");
+        clearInterval(interval);
+      }
+    }, 1000);
   }
+}
+
+function getPhoneNumber(phoneString) {
+  return phoneString.replace("+", "").trim().replace(" ", "");
+}
+// -> initil number options
+const phoneInputField = document.querySelector("#phone");
+const phoneInput = window.intlTelInput(phoneInputField, {
+  preferredCountries: ["eg", "jo", "co", "in", "de"],
+  utilsScript:
+    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 });
 
-function checkVerify() {
-  let verifyClasses = getElById("verify").classList;
-  const phoneInput = window.intlTelInput(phoneInputField, {
-    preferredCountries: ["jo", "co", "in", "de"],
-    utilsScript:
-      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-  });
+function process(event) {
+  event.preventDefault();
   const isValidNumber = phoneInput.isValidNumber();
   if (!isValidNumber) {
-    getElById("phone_feadback").innerHTML = "Phone number is not valid!";
-    getElById("submit").classList.add("btn-secondary");
-    getElById("submit").classList.remove("btn-primary");
+    document.querySelector("#phone_feadback").innerHTML =
+      "Phone number is not valid!";
+    document.getElementById("submit").classList.add("btn-secondary");
+    document.getElementById("submit").classList.remove("btn-primary");
   } else {
-    getElById("submit").classList.remove("btn-secondary");
-    getElById("submit").classList.add("btn-primary");
-    getElById("phone_feadback").innerHTML = "";
-    if (verifyClasses.contains("isVerified")) {
-      return false;
-    } else {
-      let phoneNumber = getElemnt("phone")
-        .value.replace("+", "")
-        .trim()
-        .replace(" ", "");
-      if (phoneNumber.length > 8) {
-        fetch(`${baseURL}SendOtp?MobileNumber=${phoneNumber}`, {
-          method: "POST",
+    document.getElementById("submit").classList.remove("btn-secondary");
+    document.getElementById("submit").classList.add("btn-primary");
+    document.querySelector("#phone_feadback").innerHTML = "";
+  }
+}
+
+function checkVerify() {
+  let verifyClasses = $("verify").classList;
+
+  const isValidNumber = phoneInput.isValidNumber();
+
+  if (verifyClasses.contains("isVerified") || !isValidNumber) {
+    return false;
+  } else {
+    let phoneNumber = getPhoneNumber(getElemnt("phone").value);
+    if (phoneNumber.length > 8) {
+      $("verify").innerHTML = spinner;
+      fetch(`${baseURL}SendOtp?MobileNumber=${phoneNumber}`, {
+        method: "POST",
+      })
+        .then((res) => {
+          return res.json();
         })
-          .then((res) => {
-            return res.json();
-          })
-          .then((res) => {
-            getElById("modal").classList.add("active");
-            getElFeadback("phone").innerHTML = "";
-          });
-      } else {
-        getElFeadback("phone").innerHTML = "phone number is required!";
-      }
+        .then((res) => {
+          $("modal").classList.add("active");
+          getElFeadback("phone").innerHTML = "";
+          $("verify").innerHTML = "verify";
+          setTimer("end");
+          setTimer("start");
+        });
+    } else {
+      getElFeadback("phone").innerHTML = "phone number is required!";
     }
   }
 }
-getElById("verify").addEventListener("click", checkVerify);
 
-getElById("modal").addEventListener("click", (e) => {
+$("modal").addEventListener("click", (e) => {
   if (e.target.classList.contains("modal")) {
-    getElById("modal").classList.remove("active");
-    getElById("verify").innerHTML = "not Verfied";
-    getElById("verify").classList.add("text-danger");
+    $("modal").classList.remove("active");
+    $("phone_feadback").innerHTML = "not Verfied";
+    $("phone_feadback").classList.add("text-danger");
   }
 });
 
 getElemnt("phone").addEventListener("change", function reset() {
-  getElById("verify").innerHTML = "Verfy";
-  getElById("verify").classList.remove("text-danger");
-  getElById("verify").classList.add("text-primary");
+  $("verify").innerHTML = "Verfy";
+  $("verify").classList.remove("text-danger");
+  $("verify").classList.add("text-primary");
 });
 
-getElById("submit-verify").addEventListener("click", function sendOTP() {
+function sendOTP() {
   let OTP = "";
   for (let i = 1; i < 5; i++) {
-    OTP += getElById(`num-${i}`).value;
+    OTP += $(`num-${i}`).value;
+    $(`num-${i}`).setAttribute("disabled", true);
   }
-  let phoneNumber = getElemnt("phone")
-    .value.replace("+", "")
-    .trim()
-    .replace(" ", "");
-  fetch(`${baseURL}VerifyOtp?MobileNumber=${phoneNumber}&otp=${OTP}`)
+  let phoneNumber = getPhoneNumber(getElemnt("phone").value);
+
+  $("");
+  fetch(
+    `${baseURL}VerifyOtp?MobileNumber=${phoneNumber
+      .replace("%", "")
+      .replace(" ", "")}&otp=${OTP}`
+  )
     .then((res) => {
       return res.json();
     })
     .then((res) => {
-      getElById("modal").classList.remove("active");
-      getElById("verify").innerHTML = "Verfied";
-      getElById("verify").setAttribute("class", "");
-      getElById("verify").classList.add("text-success");
-      getElById("verify").classList.add("verfied");
+      $("modal").classList.remove("active");
+      $("phone_feadback").innerHTML = "Verfied";
+      $("phone_feadback").classList.add("text-success");
+      $("verify").setAttribute("class", "");
+      $("verify").classList.add("verfied");
+      for (let i = 1; i < 5; i++) {
+        $(`num-${i}`).value = "";
+        $(`num-${i}`).disabled = false;
+      }
     })
     .catch((error) => {
-      getElById("verify").innerHTML = "not Verfied";
-      getElById("verify").setAttribute("class", "");
-      getElById("verify").classList.add("text-danger");
-      getElById("verify").classList.add("not-verified");
+      $("send-otp-again").innerHTML =
+        "<small class='text-danger ' >Not verfied, </small> Send again";
+      $("phone_feadback").classList.add("text-danger");
+      $("verify").setAttribute("class", "");
+      $("verify").classList.add("verify");
+      $("verify").innerHTML = "verify";
+      $("verify").innerHTML = "verify";
+      for (let i = 1; i < 5; i++) {
+        $(`num-${i}`).value = "";
+        $(`num-${i}`).disabled = false;
+      }
     });
-});
+}
+
+function completType(event) {
+  let idNum = +event.target.id.split("-")[1];
+  if (idNum === 4 && $(event.target.id).value) {
+    sendOTP();
+  }
+  if ($(event.target.id).value && idNum < 4) {
+    $(`num-${idNum + 1}`).focus();
+  }
+  if (!$(event.target.id).value && idNum > 1) {
+    $(`num-${idNum - 1}`).focus();
+  }
+}

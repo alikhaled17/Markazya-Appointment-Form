@@ -9,7 +9,7 @@ const Regex = {
   numbers: /^[0-9]*$/,
 };
 
-const getElById = (id) => document.getElementById(id); // return one element
+const $ = (id) => document.getElementById(id); // return one element
 const getAllElByClassName = (className) =>
   document.getElementsByClassName(className); // return array of element
 
@@ -18,23 +18,10 @@ const getAllElByQuery = (queryAll) => document.querySelectorAll(queryAll); // re
 
 const isEmpty = (value) => (value.trim() ? true : false);
 
-const getLength = (value) => value.length;
-
 function handleShowNumOfTime(num) {
   return num <= 9 ? `0${num}` : num;
 }
 
 function getElFeadback(elName) {
-  return getElById(`${elName}_feadback`);
+  return $(`${elName}_feadback`);
 }
-
-// function ValidateEmail() {
-//   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-//   if (mailformat.test(getElById("email").value)) {
-//     getElFeadback("email").innerHTML = "";
-//     return true;
-//   }
-//   getElFeadback("email").innerHTML =
-//     "You have entered an invalid email address!";
-//   return false;
-// }

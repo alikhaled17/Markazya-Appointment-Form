@@ -116,15 +116,18 @@
               id="phone"
               type="tel"
               name="phone"
-              value="+962"
+              value="+20"
               placeholder="Phone number *"
               onchange="process(event)"
             />
-            <small id="verify" class="verify">Verify</small>
+            <small id="verify" class="verify" onclick="checkVerify()"
+              >Verify</small
+            >
           </div>
           <small id="phone_feadback" class="text-danger"></small>
         </div>
       </div>
+      <!-- value="+962" -->
 
       <!-- <p>Enter your phone number:</p> -->
       <!-- <input type="submit" class="btn" value="Verify" /> -->
@@ -202,7 +205,11 @@
       </div>
 
       <div class="form-controll">
-        <small id="ctrl-slots" class="ctrl-slots click" for="text-default mb-2"
+        <small
+          id="ctrl-slots"
+          onclick="getSlots()"
+          class="ctrl-slots click"
+          for="text-default mb-2"
           >Show available Slots</small
         >
         <div>
@@ -293,47 +300,41 @@
     <div class="pop-up">
       <h4 class="fw-bold text-primary">Enter OTP</h4>
       <div class="otp" id="otp">
-        <input type="text" maxlength="1" id="num-1" />
-        <input type="text" maxlength="1" id="num-2" />
-        <input type="text" maxlength="1" id="num-3" />
-        <input type="text" maxlength="1" id="num-4" />
+        <input
+          placeholder=".."
+          type="text"
+          maxlength="1"
+          id="num-1"
+          onkeyup="completType(event)"
+        />
+        <input
+          placeholder=".."
+          type="text"
+          maxlength="1"
+          id="num-2"
+          onkeyup="completType(event)"
+        />
+        <input
+          placeholder=".."
+          type="text"
+          maxlength="1"
+          id="num-3"
+          onkeyup="completType(event)"
+        />
+        <input
+          placeholder=".."
+          type="text"
+          maxlength="1"
+          id="num-4"
+          onkeyup="completType(event)"
+        />
       </div>
-      <small id="send-otp-again" class="click">Send again</small>
-      <div>
-        <button id="submit-verify" class="btn btn-primary mt-4">Verify</button>
-      </div>
+      <small id="send-otp-again" class="click" onclick="checkVerify()"></small>
     </div>
   </div>
 
   <script src="./assets/js/helpers.js"></script>
   <script src="./assets/js/getData.js"></script>
   <script src="./assets/js/script.js"></script>
-  <script>
-    const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-      preferredCountries: ["jo", "co", "in", "de"],
-      utilsScript:
-        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-    const info = document.querySelector(".alert-info");
-
-    function process(event) {
-      event.preventDefault();
-      const phoneNumber = phoneInput.getSelectedCountryData();
-      const isValidNumber = phoneInput.isValidNumber();
-      // document.querySelector("#phone").value = phoneNumber;
-      console.log("phoneNumber", phoneNumber);
-      console.log("isValidNumber", isValidNumber);
-      if (!isValidNumber) {
-        document.querySelector("#phone_feadback").innerHTML =
-          "Phone number is not valid!";
-        document.getElementById("submit").classList.add("btn-secondary");
-        document.getElementById("submit").classList.remove("btn-primary");
-      } else {
-        document.getElementById("submit").classList.remove("btn-secondary");
-        document.getElementById("submit").classList.add("btn-primary");
-        document.querySelector("#phone_feadback").innerHTML = "";
-      }
-    }
-  </script>
+  <script></script>
 </html>
